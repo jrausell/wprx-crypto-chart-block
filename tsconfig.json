@@ -1,0 +1,18 @@
+{
+   "compilerOptions": {
+      //Note: webpack overwrites this variable
+      "outDir": "./dist",
+      //React compatibility
+      "jsx": "react-jsx",
+      //ES support
+      "module": "ESNext", // for import() and es5 import/export
+      "target": "ES5",
+      //not required but recommended:
+      //The strict flag enables a wide range of type checking behavior that results in stronger guarantees of program correctness
+      "strict": true,
+      //allowSyntheticDefaultImports allow to write import in a short way like: import React from "react"; instead of: import * as React from "react";
+      "allowSyntheticDefaultImports": true,
+      //moduleResolution Node attempts to mimic the Node.js module resolution mechanism at runtime
+      "moduleResolution": "node"
+   }
+}
