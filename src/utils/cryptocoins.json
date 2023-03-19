@@ -1,0 +1,57 @@
+[
+   {
+      "label": "Select Crypto",
+      "value": "",
+      "symbol": ""
+   },
+   {
+      "label": "Bitcoin",
+      "value": "bitcoin",
+      "symbol": "BTC"
+   },
+   {
+      "label": "Ethereum",
+      "value": "ethereum",
+      "symbol": "ETH"
+   },
+   {
+      "label": "BNB",
+      "value": "bnb",
+      "symbol": "BNB"
+   },
+   {
+      "label": "XRP",
+      "value": "ripple",
+      "symbol": "XRP"
+   },
+   {
+      "label": "Cardano",
+      "value": "cardano",
+      "symbol": "ADA"
+   },
+   {
+      "label": "Doge Coin",
+      "value": "dogecoin",
+      "symbol": "DOGE"
+   },
+   {
+      "label": "Polkadot",
+      "value": "polkadot",
+      "symbol": "DOT"
+   },
+   {
+      "label": "Chainlink",
+      "value": "chainlink",
+      "symbol": "LINK"
+   },
+   {
+      "label": "Shiba Inu",
+      "value": "shiba-inu",
+      "symbol": "SHIB"
+   },
+   {
+      "label": "Decentraland",
+      "value": "decentraland",
+      "symbol": "MANA"
+   }
+]

@@ -13,6 +13,7 @@
       //allowSyntheticDefaultImports allow to write import in a short way like: import React from "react"; instead of: import * as React from "react";
       "allowSyntheticDefaultImports": true,
       //moduleResolution Node attempts to mimic the Node.js module resolution mechanism at runtime
-      "moduleResolution": "node"
-   }
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+   },
 }

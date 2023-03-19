@@ -1,9 +1,10 @@
 {
   "apiVersion": 2,
   "title": "Crypto Chart Block",
-  "name": "crypto-chart/block",
+  "name": "crypto-chart-block/editor",
   "category": "layout",
   "textdomain": "crypto-chart-block",
   "icon": "universal-access-alt",
-  "editorScript": "file:build/plugin-block.js"
+  "editorScript": "file:build/plugin-block.js",
+  "script": "file:build/public.js"
 }

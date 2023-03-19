@@ -1,0 +1,12 @@
+[
+   {
+      "label": "US Dollar",
+      "value": "usd",
+      "symbol": "USD"
+   },
+   {
+      "label": "Euro",
+      "value": "eur",
+      "symbol": "EUR"
+   }
+]

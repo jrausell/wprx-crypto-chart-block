@@ -1,4 +1,7 @@
-.ccb-block{
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/@wordpress/scripts/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/plugin-block.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.ccb-block {
   margin: 10px -10px;
   padding: 10px;
   border-radius: 10px;
@@ -7,42 +10,51 @@
   color: white;
 }
 
-.m-0{
+.m-0 {
   margin: 0;
 }
-.mb-10{
+
+.mb-10 {
   margin-bottom: 10px;
 }
-.p-0{
+
+.p-0 {
   padding: 0;
 }
 
-.text-sm{
+.text-sm {
   font-size: 12px;
 }
-.text-lg{
+
+.text-lg {
   font-size: 24px;
 }
-.text-14{
+
+.text-14 {
   font-size: 14px;
 }
-.text-16{
+
+.text-16 {
   font-size: 16px;
 }
-.text-18{
+
+.text-18 {
   font-size: 18;
 }
-.text-20{
+
+.text-20 {
   font-size: 20;
 }
-.text-24{
+
+.text-24 {
   font-size: 24;
 }
 
-.rounded{
+.rounded {
   border-radius: 5px;
 }
-.rounded-lg{
+
+.rounded-lg {
   border-radius: 10px;
 }
 
@@ -56,40 +68,36 @@
   border-bottom: none;
 }
 
-.input-form>.label {
+.input-form > .label {
   font-weight: 600;
   min-width: 170px;
 }
 
-.input-form>.input input {
+.input-form > .input input {
   border: 1px solid #a3a3a3;
   border-radius: 3px;
 }
 
-.input-form>.input>.description {
+.input-form > .input > .description {
   font-size: 11px;
   color: #6e6e6e;
 }
-
 
 .separator {
   padding: 20px;
   display: block;
 }
 
-
 @media screen and (min-width: 640px) {
   .flex-640 {
-     display: flex;
+    display: flex;
   }
 }
-
 @media screen and (min-width: 800px) {
   .flex-800 {
-     display: flex;
+    display: flex;
   }
 }
-
 .flex {
   display: flex;
 }
@@ -150,27 +158,45 @@
   align-content: flex-space-between;
 }
 
-
-.grid{
+.grid {
   display: grid;
 }
-.grid-2 { grid-template-columns: repeat(2, 1fr);}
-.grid-3 { grid-template-columns: repeat(3, 1fr);}
-.grid-4 { grid-template-columns: repeat(4, 1fr);}
-.grid-5 { grid-template-columns: repeat(5, 1fr);}
-.grid-6 { grid-template-columns: repeat(6, 1fr);}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
 
 @media (min-width: 600px) {
-  .grid-6, .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-6, .grid-4, .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (min-width: 900px) {
-  .grid-6, .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-6, .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 @media (min-width: 1200px) {
-  .grid-6 { grid-template-columns: repeat(6, 1fr); }
+  .grid-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
-
-
 .gap-10 {
   gap: 10px;
 }
@@ -207,50 +233,59 @@
   min-width: 50%;
 }
 
-
-.absolute{
+.absolute {
   position: absolute;
 }
-.relative{
+
+.relative {
   position: relative;
 }
 
-.top-0{
+.top-0 {
   top: 0;
 }
-.bottom-0{
+
+.bottom-0 {
   bottom: 0;
 }
-.left-0{
+
+.left-0 {
   left: 0;
 }
-.right-0{
+
+.right-0 {
   right: 0;
 }
 
-.p-10{
+.p-10 {
   padding: 10px;
 }
-.p-20{
+
+.p-20 {
   padding: 20px;
 }
-.m-10{
+
+.m-10 {
   margin: 10px;
 }
-.m-20{
+
+.m-20 {
   margin: 20px;
 }
 
-.z-0{
+.z-0 {
   z-index: 0;
 }
-.z-10{
+
+.z-10 {
   z-index: 10;
 }
-.z-20{
+
+.z-20 {
   z-index: 20;
 }
-.shadow{
+
+.shadow {
   box-shadow: 2px 2px 2px #9b9b9b;
 }
 
@@ -306,41 +341,38 @@
 }
 
 @media screen and (min-width: 800px) {
-
-  .wprx-cil__popover-input-inline.wprx-cil__popover-input>div,
+  .wprx-cil__popover-input-inline.wprx-cil__popover-input > div,
   .wprx-cil__popover-input-inline.wprx-cil__popover-select {
-     display: flex;
-     align-items: baseline;
-     gap: 8px;
-     position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    position: relative;
   }
-
-  .wprx-cil__popover-input-inline.wprx-cil__popover-input>div>.components-base-control__label,
-  .wprx-cil__popover-input-inline.wprx-cil__popover-select>.components-flex-item {
-     width: 120px !important;
-     font-size: 12px;
-     color: #262626;
-     margin-bottom: 0 !important;
-     height: auto;
+  .wprx-cil__popover-input-inline.wprx-cil__popover-input > div > .components-base-control__label,
+  .wprx-cil__popover-input-inline.wprx-cil__popover-select > .components-flex-item {
+    width: 120px !important;
+    font-size: 12px;
+    color: #262626;
+    margin-bottom: 0 !important;
+    height: auto;
   }
-
-  .wprx-cil__popover-input-inline.wprx-cil__popover-input>div>.components-text-control__input,
-  .wprx-cil__popover-input-inline.wprx-cil__popover-input>.components-input-control__container {
-     max-width: 100% !important;
-     width: auto !important;
-     border-color: #a6a6a6;
-     padding: 0px 8px !important;
-     flex-grow: 1;
+  .wprx-cil__popover-input-inline.wprx-cil__popover-input > div > .components-text-control__input,
+  .wprx-cil__popover-input-inline.wprx-cil__popover-input > .components-input-control__container {
+    max-width: 100% !important;
+    width: auto !important;
+    border-color: #a6a6a6;
+    padding: 0px 8px !important;
+    flex-grow: 1;
   }
-
   /*price[data-rich-text-format-boundary="true"]*/
-
 }
-
 .block-editor-block-list__block .components-text-control__input {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
-.components-base-control__label{
+
+.components-base-control__label {
   margin-bottom: 4px !important;
 }
+
+/*# sourceMappingURL=plugin-block.css.map*/
