@@ -65,6 +65,8 @@ export default function CryptoChartBlock({
    coins = JSON.parse(coins);
    dates = JSON.parse(dates);
 
+   //title hiden
+
    const options = {
       responsive: true,
       plugins: {
@@ -72,7 +74,7 @@ export default function CryptoChartBlock({
             position: 'top' as const,
          },
          title: {
-            display: showTitle,
+            display: false,
             text: coins.map(coin => coin.coin.charAt(0).toUpperCase() + coin.coin.slice(1)).join(' Vs ') + ' Vs ' + vscoin.toUpperCase(),
          },
       },

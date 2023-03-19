@@ -119,18 +119,25 @@ function Edit(_a) {
   var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(JSON.parse(attributes.coins) || []),
     coins = _r[0],
     setCoins = _r[1];
+  var colors = ['#497bb1', '#b06748', '#92b048', '#cfc74c'];
   /**
    * Add a new empty coin in the coins array
    */
   function addCoin() {
+    var color = colors.find(function (color) {
+      if (!coins.find(function (coin) {
+        if (coin.color == color) return true;
+      })) return color;
+    }) || '#49abb1';
     coins.push({
       id: Date.now() + cont,
-      coin: null,
+      coin: '',
       prices: [],
-      color: '#497bb1',
-      bgcolor: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.lightenColor)('#497bb1', 40)
+      color: color,
+      bgcolor: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.lightenColor)(color, 40)
     });
     setCont(cont + 1);
+    console.log('Added coin', coins, labels);
   }
   /**
    * Remove a coin from the coins array using id prop
@@ -426,7 +433,7 @@ function Edit(_a) {
           children: "Add Coin"
         }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        children: labels && labels.length > 0 && coins && coins.length > 0 && data && data.hasOwnProperty('datasets') && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+        children: labels && labels.length > 0 && coins && coins.length > 0 && coins[0].coin != '' && data && data.hasOwnProperty('datasets') && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
           style: {
             maxWidth: '600px',
             backgroundColor: '#f2f2f2',
@@ -597,7 +604,7 @@ function CoinSettings(_a) {
       setPrices(newprices);
     });
     setIsSaving(false);
-  }, [coin, vscoin, period, steps, color]);
+  }, [coin, vscoin, period, steps, color, dateTo, dateFrom]);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
     className: 'coin-settings p-10',
     style: {

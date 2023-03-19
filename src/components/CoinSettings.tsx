@@ -88,7 +88,7 @@ export default function CoinSettings ({ id, coinElement, labelsElement, vscoin, 
       
       setIsSaving(false);
 
-   }, [coin, vscoin, period, steps, color]);
+   }, [coin, vscoin, period, steps, color, dateTo, dateFrom]);
 
    return <div
       key={Date.now()}

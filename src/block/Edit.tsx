@@ -91,18 +91,35 @@ export default function Edit({
 
    const [coins, setCoins] = useState<Array<any>>(JSON.parse(attributes.coins) || []);
 
+   const colors = [
+      '#497bb1',
+      '#b06748',
+      '#92b048',
+      '#cfc74c'
+   ]
+
    /**
     * Add a new empty coin in the coins array
     */
    function addCoin() {
+      const color = colors.find(color => { 
+         if(
+            !coins.find(coin => { 
+               if( coin.color == color ) return true; 
+            })
+         ) return color;
+      }) || '#49abb1';
+      
       coins.push({
          id: Date.now() + cont,
-         coin: null,
+         coin: '',
          prices: [],
-         color: '#497bb1',
-         bgcolor: lightenColor('#497bb1', 40)
+         color,
+         bgcolor: lightenColor(color, 40)
       })
       setCont(cont + 1)
+
+      console.log('Added coin', coins, labels)
    }
 
    /**
@@ -379,7 +396,7 @@ export default function Edit({
             </div>
    
             <div>
-               {labels && labels.length > 0 && coins && coins.length > 0 && data && data.hasOwnProperty('datasets') && <div style={{ maxWidth: '600px', backgroundColor: '#f2f2f2', padding: '10px' }}>
+               {labels && labels.length > 0 && coins && coins.length > 0 && coins[0].coin != '' && data && data.hasOwnProperty('datasets') && <div style={{ maxWidth: '600px', backgroundColor: '#f2f2f2', padding: '10px' }}>
                   <Line options={options} data={data} />
                </div>}
             </div>

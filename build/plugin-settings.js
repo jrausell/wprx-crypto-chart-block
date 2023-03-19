@@ -115,7 +115,7 @@ function CoinSettings(_a) {
       setPrices(newprices);
     });
     setIsSaving(false);
-  }, [coin, vscoin, period, steps, color]);
+  }, [coin, vscoin, period, steps, color, dateTo, dateFrom]);
   return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
     className: 'coin-settings p-10',
     style: {

@@ -16466,6 +16466,7 @@ function CryptoChartBlock(_a) {
     showTitle = _a.showTitle;
   coins = JSON.parse(coins);
   dates = JSON.parse(dates);
+  //title hiden
   var options = {
     responsive: true,
     plugins: {
@@ -16473,7 +16474,7 @@ function CryptoChartBlock(_a) {
         position: 'top'
       },
       title: {
-        display: showTitle,
+        display: false,
         text: coins.map(function (coin) {
           return coin.coin.charAt(0).toUpperCase() + coin.coin.slice(1);
         }).join(' Vs ') + ' Vs ' + vscoin.toUpperCase()

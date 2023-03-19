@@ -1,20 +1,40 @@
-.ccb-block{
-  margin: 10px -10px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid #f2f2f2;
-  background-color: #262626;
-  color: white;
-}
+$sides: (
+"": "",
+"t": "top",
+"b": "bottom",
+"l": "left",
+"r": "right",
+);
 
-.m-0{
-  margin: 0;
-}
-.mb-10{
-  margin-bottom: 10px;
-}
-.p-0{
-  padding: 0;
+$breakpoints: (
+"": "",
+"xs": 576px,
+"sm": 768px,
+"md": 992px,
+"lg": 1200px,
+);
+
+
+$spaceamounts: (0, 10, 20, 30, 40); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  .m-#{$space} {
+    margin: #{$space}px !important;
+  }
+  .p-#{$space} {
+    padding: #{$space}px !important;
+  }
+
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+  
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
 }
 
 .text-sm{
@@ -45,6 +65,17 @@
 .rounded-lg{
   border-radius: 10px;
 }
+
+
+.ccb-block{
+  margin: 10px -10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #f2f2f2;
+  background-color: #262626;
+  color: white;
+}
+
 
 .input-form {
   margin-bottom: 10px;
