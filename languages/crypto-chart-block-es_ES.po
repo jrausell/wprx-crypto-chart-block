@@ -1,0 +1,85 @@
+# Copyright (C) 2023 Jorge Rausell
+# This file is distributed under the same license as the Crypto Chart Block plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Crypto Chart Block 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wprx-crypto-chart-"
+"block\n"
+"POT-Creation-Date: 2023-03-20T11:59:50+00:00\n"
+"PO-Revision-Date: 2023-03-20 13:04+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Domain: crypto-chart-block\n"
+
+#. Plugin Name of the plugin
+#: crypto-chart-block.php:59
+msgid "Crypto Chart Block"
+msgstr "Bloque Gráfica Crypto"
+
+#. Description of the plugin
+msgid "Add simple Crypto Charts in pages/post for a Cryptocurrency against USD"
+msgstr ""
+"Añade una sencilla gráfica de Crypto precios en páginas/post en relación al "
+"USD"
+
+#. Author of the plugin
+msgid "Jorge Rausell"
+msgstr ""
+
+#: crypto-chart-block.php:58
+msgid "Crypto Chart Block Menu Page"
+msgstr "Bloque Gráfica Crypto Menú"
+
+#: crypto-chart-block.php:71
+msgid "Crypto Chart Settings ... Loading ..."
+msgstr "Bloque Gráfica Crypto … Cargando …"
+
+#: build/plugin-block.js:1 build/plugin-settings.js:1
+msgid "Settings"
+msgstr "Configuración"
+
+#: build/plugin-block.js:1 build/plugin-settings.js:1
+msgid "Title"
+msgstr "Título"
+
+#: build/plugin-block.js:1 build/plugin-settings.js:1
+msgid "Vs Coin"
+msgstr "Vs Moneda"
+
+#: build/plugin-block.js:1 build/plugin-settings.js:1
+msgid "Period"
+msgstr "Periodo"
+
+#: build/plugin-block.js:1 build/plugin-settings.js:1
+msgid "From Date"
+msgstr "Desde Fecha"
+
+#: build/plugin-block.js:1 build/plugin-settings.js:1
+msgid "to Date"
+msgstr "hasta Fecha"
+
+#: build/plugin-settings.js:1
+msgid ""
+"Add a chart showing the daily market prices from a start date to a end date."
+msgstr ""
+"Añade una gráfica mostrando el precio por días desde una fecha de inicio a "
+"una de fin."
+
+#: build/plugin-settings.js:1
+msgid "The market prices are fetched from CoinGeko free API."
+msgstr "Los precios son extraídos de la API gratuita de CoinGeko."
+
+#: build/plugin-settings.js:1
+msgid "Chart Example"
+msgstr "Gráfica de ejemplo"
+
+#: build/block/block.json src/block/block.json
+msgctxt "block title"
+msgid "Crypto Chart Block"
+msgstr "Bloque Gráfica Crypto"

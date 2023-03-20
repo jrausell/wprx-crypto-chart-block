@@ -78,18 +78,18 @@ export default function Edit({
    const [openDatePickerFrom, setOpenDatePickerFrom] = useState(false);
    const [openDatePickerTo, setOpenDatePickerTo] = useState(false);
 
-   const [vscoin, setVscoin] = useState(attributes.vscoin || 'usd');
-   const [period, setPeriod] = useState(attributes.period || 'daily');
-   const [steps, setSteps] = useState(attributes.steps || 30);
-   const [dateFrom, setDateFrom] = useState(attributes.dateFrom || last30DaysDateTime);
-   const [dateTo, setDateTo] = useState(attributes.dateTo || currentDateTime);
-   const [showTitle, setShowTitle] = useState<boolean>(attributes.showTitle || false);
+   const [vscoin, setVscoin] = useState(attributes?.vscoin || 'usd');
+   const [period, setPeriod] = useState(attributes?.period || 'daily');
+   const [steps, setSteps] = useState(attributes?.steps || 30);
+   const [dateFrom, setDateFrom] = useState(attributes?.dateFrom || last30DaysDateTime);
+   const [dateTo, setDateTo] = useState(attributes?.dateTo || currentDateTime);
+   const [showTitle, setShowTitle] = useState<boolean>(attributes?.showTitle || false);
 
-   const [labels, setLabels] = useState<any>(JSON.parse(attributes.dates) || []);
+   const [labels, setLabels] = useState<any>(attributes?.dates ? JSON.parse(attributes?.dates) : []);
    const [data, setData] = useState<ChartData<'line'>>();
    const [options, setOptions] = useState<ChartOptions<'line'>>();
 
-   const [coins, setCoins] = useState<Array<any>>(JSON.parse(attributes.coins) || []);
+   const [coins, setCoins] = useState<Array<any>>(attributes?.coins ? JSON.parse(attributes?.coins) : []);
 
    const colors = [
       '#497bb1',
@@ -226,6 +226,8 @@ export default function Edit({
 
    function saveAllBlockAttributes(){
 
+      if(!setAttributes) return;
+
       // vscoin: {
       //    type: "string",
       //    default: "usd"
@@ -270,13 +272,14 @@ export default function Edit({
       //console.log('BLOCK ATTR: ', attributes)
 
    }
-
-
+   
+   
+   //<div {...useBlockProps()}>
    return (
-      <div {...useBlockProps()}>
+      <div className=''>
          <div className='wrap p-10' style={{ backgroundColor: 'rgb(250, 250, 250)' }}>
 
-            <h5 className='m-0 p-0 text-14'>Settings:</h5>
+            <h5 className='m-0 p-0 text-14'>{__('Settings', 'crypto-chart-block')}:</h5>
    
             <div className='grid grid-5 gap-10 flex-align-end'>
                <SelectControl
@@ -380,7 +383,6 @@ export default function Edit({
                      dateTo={dateTo}
                      updateCoin={updateCoin}
                      removeCoin={removeCoin}
-                     className="bg-white rounded-lg"
                   />
                })}
    

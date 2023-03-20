@@ -1,3 +1,6 @@
+
+import './plugin-settings.scss';
+
 /**
  * React dependencies
  */
@@ -41,6 +44,8 @@ import cryptocoins from "./utils/cryptocoins.json";
 import vscoins from "./utils/fiatcoins.json";
 //the component to set the coin settions (coin, color)
 import CoinSettings from "./components/CoinSettings";
+
+import Edit from './block/Edit';
 //Out TS types
 
 
@@ -73,7 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
    ReactDOM.render(
       <div>
          <h2>{__('Crypto Chart Block', 'crypto-chart-block-settings')}</h2>
-         <App />
+         <div style={{ maxWidth: '800px' }}>
+            <App />
+         </div>
       </div>
       , element);
 })
@@ -85,174 +92,25 @@ const App = () => {
    const [isSaving, setIsSaving] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
 
-   const maxCoins = 3;
-
-   const [showTitle, setShowTitle] = useState<boolean>(false);
-   const [coins, setCoins] = useState<Array<any>>([]);
-   const [vscoin, setVscoin] = useState('usd');
-   const [period, setPeriod] = useState('daily');
-   const [steps, setSteps] = useState(30);
-   const [cont, setCont] = useState(0);
-
-   const [data, setData] = useState<ChartData<'line'>>();
-   const [labels, setLabels] = useState<any>([]);
-   const [options, setOptions] = useState<ChartOptions<'line'>>();
-
-   /**
-    * Add a new empty coin in the coins array
-    */
-   function addCoin() {
-      coins.push({
-         id: Date.now() + cont,
-         coin: null,
-         prices: [],
-         color: '#497bb1',
-         bgcolor: lightenColor('#497bb1', 40)
-      })
-      setCont(cont + 1)
-   }
-
-   /**
-    * Remove a coin from the coins array using id prop
-    */
-   function removeCoin(id:string) {
-      console.log('removeCoin()', id)
-      setCoins(coins.filter(coin => coin.id !== id) || []);
-   }
-
-   /**
-    * Update a coin in the coins array
-    * finds the coin using the id prop and update the rest of props
-    */
-   function updateCoin(id:string, newCoin:object, newPrices:Array<any>, newLabels:Array<any>, newColor:string) {
-      console.log('updateCoin()', id, newCoin, newPrices, newLabels, newColor);
-      setCoins(coins.map(coin => {
-         if (coin.id !== id) return coin;
-
-         return {
-            ...coin,
-            coin: newCoin,
-            prices: newPrices,
-            color: newColor,
-            bgcolor: lightenColor(newColor, 40)
-         }
-      }));
-
-      setLabels(newLabels);
-
-   }
-
-   /**
-    * When the coins array change
-    * update the "data" State to update the chart
-    */
-   useEffect(() => {
-      if (!coins || !labels) return;
-
-      console.log('Coins effect: ', coins);
-      const datasets = coins.map(coin => {
-         console.log('setData() dataset coin: ', coin)
-         if (coin) return {
-            label: coin.coin,
-            data: coin.prices,
-            borderColor: coin.color,
-            backgroundColor: coin.bgcolor
-         }
-      }) || [];
-
-      setData({
-         labels,
-         datasets
-      });
-
-   }, [coins]);
-
-   /**
-    * When showTitle var change update the chart options
-    * BUG: title = false don't update the chart
-    */
-   useEffect(() => {
-      setOptions({
-         responsive: true,
-         plugins: {
-            legend: {
-               position: 'top' as const,
-            },
-            title: {
-               display: showTitle,
-               text: coins.map(coin => coin.coin.charAt(0).toUpperCase() + coin.coin.slice(1)).join(' Vs ') + ' Vs ' + vscoin.toUpperCase(),
-            },
-         },
-      });
-   }, [showTitle]);
-
 
    /**
     * Return the view rendered
     */
    return <div>
-      <div className='flex flex-align-end'>
-         <SelectControl
-            className=""
-            label={__('Title', 'crypto-chart-block')}
-            value={showTitle}
-            options={[{ label: 'Visible', value: true }, { label: 'Hidden', value: false }]}
-            onChange={(newVal: boolean) => setShowTitle(newVal)}
-            __nextHasNoMarginBottom
-         />
-
-         <SelectControl
-            className=""
-            label={__('Vs Coin', 'crypto-chart-block')}
-            value={vscoin}
-            options={vscoins}
-            onChange={(newVal:string) => setVscoin(newVal)}
-            __nextHasNoMarginBottom
-         />
-
-         <SelectControl
-            className=""
-            label={__('Period', 'crypto-chart-block')}
-            value={period}
-            options={[{ label: 'Daily', value: 'daily' }, { label: 'Weekly', value: 'weekly' }]}
-            onChange={(newVal:string) => setPeriod(newVal)}
-            __nextHasNoMarginBottom
-         />
-
-         <SelectControl
-            className=""
-            label={__('Steps', 'crypto-chart-block')}
-            value={steps}
-            options={[{ label: '15', value: '15' }, { label: '30', value: '30' }, { label: '90', value: '90' }]}
-            onChange={(newVal:number) => setSteps(newVal)}
-            __nextHasNoMarginBottom
-         />
-
-         {maxCoins > coins.length && <Button variant="secondary" onClick={() => addCoin()}>Add Coin</Button> }
+      <div className='bg-white p-20'>
+         <p>{__('Add a chart showing the daily market prices from a start date to a end date.', 'crypto-chart-block')}</p>
+         <p>{__('The market prices are fetched from CoinGeko free API.', 'crypto-chart-block')}</p>
       </div>
 
-      <div>
-         {coins && coins.map(coin => {
-            //Make sure "coin" exist and this is not reacting before setCoins is updated
-            if (coin) return <CoinSettings
-               key={coin.id}
-               id={coin.id}
-               coinElement={coin}
-               vscoin={vscoin}
-               period={period}
-               steps={steps}
-               updateCoin={updateCoin}
-               removeCoin={removeCoin}
-            />
-         })}
-      </div>
-
-      <div>
-         {data && <div style={{ maxWidth: '600px', backgroundColor: '#f2f2f2', padding: '10px' }}>
-            <Line options={options} data={data} />
-         </div>}
+      <h3>{__('Chart Example', 'crypto-chart-block')}</h3>
+      <div className='block-editor-block-list__block' style={{ maxWidth: '800px' }}>
+         <Edit 
+         className={false}
+         isSelected={false}
+         attributes={[]}
+         setAttributes={null} 
+         />
       </div>
 
    </div>
 }
-

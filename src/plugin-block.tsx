@@ -1,4 +1,7 @@
 
+
+import './plugin-block.scss';
+
 /**
  * WordPress dependencies
  */
@@ -7,8 +10,6 @@ import { __ } from '@wordpress/i18n';
 
 import Edit from './block/Edit';
 import Save from './block/Save';
-
-import './plugin-block.scss';
 
 registerBlockType('crypto-chart-block/editor', {
    title: 'Crypto Chart Block',

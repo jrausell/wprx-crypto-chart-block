@@ -15,8 +15,10 @@
  */
 function crypto_chart_block_init()
 {
-    load_plugin_textdomain('crypto-chart-block', false, dirname(plugin_basename(__FILE__)) . '/languages');
-    load_plugin_textdomain('crypto-chart-block-settings', false, dirname(plugin_basename(__FILE__)) . '/languages');
+    load_plugin_textdomain('crypto-chart-block', 
+        false, 
+        dirname(plugin_basename(__FILE__)) . '/languages'
+    );
 
     //register_block_type(__DIR__ . '/src/block');
     $script_handle = generate_block_asset_handle('crypto-chart-block/editor', 'editorScript');
@@ -51,15 +53,16 @@ function escape_block_attributes( $attributes = [] ) {
 }
 
 /**
- * The admin settings page
+ * ADMIN SETTINGS PAGE
  */
+
 function crypto_chart_block_create_admin_menu()
 {
     add_menu_page(
-        __('Crypto Chart Block Menu Page', 'wprx-crypto-chart'),
-        __('Crypto Chart Block', 'wprx-crypto-chart'),
+        __('Crypto Chart Block Menu Page', 'crypto-chart-block'),
+        __('Crypto Chart Block', 'crypto-chart-block'),
         'manage_options',
-        'wprx-crypto-chart',
+        'crypto-chart-block',
         'crypto_chart_block_menu_page_template',
         'dashicons-money-alt'
     );
@@ -69,8 +72,7 @@ add_action('admin_menu', 'crypto_chart_block_create_admin_menu');
 function crypto_chart_block_menu_page_template()
 {
     echo '<div id="wrap">';
-    echo '<p>' . __('Hello world', 'crypto-chart-block-settings') . '</p>';
-    echo '<div id="crypto-chart-block-settings">' . __('Crypto Chart Settings ... Loading ...', 'wprx-crypto-chart') . '</div>';
+        echo '<div id="crypto-chart-block-settings">' . __('Crypto Chart Settings ... Loading ...', 'crypto-chart-block') . '</div>';
     echo '</div>';
 }
 
@@ -89,19 +91,31 @@ function crypto_chart_block_admin_enqueue_scripts()
         true
     );
 
-    //localization for settings
-    wp_set_script_translations(
-        'crypto-chart-block-settings',
-        'crypto-chart-block-settings',
-        plugin_dir_path(__FILE__) . 'languages'
+    wp_enqueue_style(
+        'crypto-chart-block-settings-css',
+        plugin_dir_url(__FILE__) . 'build/plugin-settings.css',
+        false,
+        NULL,
+        false
     );
 }
 add_action('admin_enqueue_scripts', 'crypto_chart_block_admin_enqueue_scripts');
 
 
+function crypto_chart_block_script_translation()
+{
+    //FIXME: translation doesn't work in JS. Maybe domain problems or json md5? *Same for editor and public
+    wp_set_script_translations(
+        'crypto-chart-block-settings',
+        'crypto-chart-block',
+        plugin_dir_path(__FILE__) . 'languages'
+    );
+}
+add_action('admin_enqueue_scripts', 'crypto_chart_block_script_translation', 100);
+
 
 /**
- * block
+ * EDITOR
  */
 
 function crypto_chart_block_editor()
@@ -109,7 +123,7 @@ function crypto_chart_block_editor()
     $asset = include plugin_dir_path(__FILE__) . 'build/plugin-block.asset.php';
 
     wp_enqueue_script(
-        'crypto-chart-block-block',
+        'crypto-chart-block-editor',
         plugin_dir_url(__FILE__) . 'build/plugin-block.js',
         $asset['dependencies'],
         $asset['version'],
@@ -118,7 +132,7 @@ function crypto_chart_block_editor()
     );
 
     wp_enqueue_style(
-        'ccb' . '-editor',
+        'crypto-chart-block-editor-css',
         plugin_dir_url(__FILE__) . 'build/plugin-block.css',
         false,
         NULL,
@@ -137,7 +151,7 @@ add_action('enqueue_block_editor_assets', 'crypto_chart_block_editor');
 
 
 /**
- * Public
+ * PUBLIC
  */
 
 function crypto_chart_block_public()
@@ -153,17 +167,16 @@ function crypto_chart_block_public()
     );
 
     wp_enqueue_style(
-        'ccb' . '-public',
+        'crypto-chart-block-public-css',
         plugin_dir_url(__FILE__) . 'build/public.css',
         false,
         NULL,
         false
     );
 
-    //localization for block editor
-    $script_handle = generate_block_asset_handle('crypto-chart-block/editor', 'editorScript');
+    //localization 
     wp_set_script_translations(
-        $script_handle,
+        'crypto-chart-block-public',
         'crypto-chart-block',
         plugin_dir_path(__FILE__) . 'languages'
     );

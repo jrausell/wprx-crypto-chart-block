@@ -1,1 +1,1 @@
-# wprx-crypto-chart-block
+# crypto-chart-block

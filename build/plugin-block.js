@@ -15,17 +15,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.js");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/utils */ "./src/utils/utils.tsx");
-/* harmony import */ var _utils_fiatcoins_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/fiatcoins.json */ "./src/utils/fiatcoins.json");
-/* harmony import */ var _components_CoinSettings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/CoinSettings */ "./src/components/CoinSettings.tsx");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/utils */ "./src/utils/utils.tsx");
+/* harmony import */ var _utils_fiatcoins_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/fiatcoins.json */ "./src/utils/fiatcoins.json");
+/* harmony import */ var _components_CoinSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/CoinSettings */ "./src/components/CoinSettings.tsx");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -50,7 +48,6 @@ var __assign = undefined && undefined.__assign || function () {
  */
 
 
-
 /**
  * Our libraries
  */
@@ -60,7 +57,7 @@ var __assign = undefined && undefined.__assign || function () {
 
 //Out TS types
 //The chart
-chart_js__WEBPACK_IMPORTED_MODULE_8__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_8__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_8__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_8__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_8__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_8__.Title, chart_js__WEBPACK_IMPORTED_MODULE_8__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_8__.Legend);
+chart_js__WEBPACK_IMPORTED_MODULE_7__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_7__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_7__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_7__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_7__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_7__.Title, chart_js__WEBPACK_IMPORTED_MODULE_7__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_7__.Legend);
 /**
  * Code
  */
@@ -89,25 +86,25 @@ function Edit(_a) {
   var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     openDatePickerTo = _f[0],
     setOpenDatePickerTo = _f[1];
-  var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.vscoin || 'usd'),
+  var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.vscoin) || 'usd'),
     vscoin = _g[0],
     setVscoin = _g[1];
-  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.period || 'daily'),
+  var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.period) || 'daily'),
     period = _h[0],
     setPeriod = _h[1];
-  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.steps || 30),
+  var _j = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.steps) || 30),
     steps = _j[0],
     setSteps = _j[1];
-  var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.dateFrom || last30DaysDateTime),
+  var _k = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.dateFrom) || last30DaysDateTime),
     dateFrom = _k[0],
     setDateFrom = _k[1];
-  var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.dateTo || currentDateTime),
+  var _l = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.dateTo) || currentDateTime),
     dateTo = _l[0],
     setDateTo = _l[1];
-  var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes.showTitle || false),
+  var _m = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.showTitle) || false),
     showTitle = _m[0],
     setShowTitle = _m[1];
-  var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(JSON.parse(attributes.dates) || []),
+  var _o = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.dates) ? JSON.parse(attributes === null || attributes === void 0 ? void 0 : attributes.dates) : []),
     labels = _o[0],
     setLabels = _o[1];
   var _p = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
@@ -116,7 +113,7 @@ function Edit(_a) {
   var _q = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
     options = _q[0],
     setOptions = _q[1];
-  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(JSON.parse(attributes.coins) || []),
+  var _r = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.coins) ? JSON.parse(attributes === null || attributes === void 0 ? void 0 : attributes.coins) : []),
     coins = _r[0],
     setCoins = _r[1];
   var colors = ['#497bb1', '#b06748', '#92b048', '#cfc74c'];
@@ -134,7 +131,7 @@ function Edit(_a) {
       coin: '',
       prices: [],
       color: color,
-      bgcolor: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.lightenColor)(color, 40)
+      bgcolor: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.lightenColor)(color, 40)
     });
     setCont(cont + 1);
     console.log('Added coin', coins, labels);
@@ -160,7 +157,7 @@ function Edit(_a) {
         coin: newCoin,
         prices: newPrices,
         color: newColor,
-        bgcolor: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_5__.lightenColor)(newColor, 40)
+        bgcolor: (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.lightenColor)(newColor, 40)
       });
     }));
     setLabels(newLabels);
@@ -224,6 +221,7 @@ function Edit(_a) {
     saveAllBlockAttributes();
   }, [showTitle, period, steps, vscoin, data]);
   function saveAllBlockAttributes() {
+    if (!setAttributes) return;
     // vscoin: {
     //    type: "string",
     //    default: "usd"
@@ -282,22 +280,24 @@ function Edit(_a) {
     });
     //console.log('BLOCK ATTR: ', attributes)
   }
-
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), {
+  //<div {...useBlockProps()}>
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+    className: ''
+  }, {
     children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
       className: 'wrap p-10',
       style: {
         backgroundColor: 'rgb(250, 250, 250)'
       }
     }, {
-      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h5", __assign({
+      children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h5", __assign({
         className: 'm-0 p-0 text-14'
       }, {
-        children: "Settings:"
+        children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings', 'crypto-chart-block'), ":"]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         className: 'grid grid-5 gap-10 flex-align-end'
       }, {
-        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
           className: "",
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Title', 'crypto-chart-block'),
           value: showTitle,
@@ -312,16 +312,16 @@ function Edit(_a) {
             return setShowTitle(newVal);
           },
           __nextHasNoMarginBottom: true
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
           className: "",
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vs Coin', 'crypto-chart-block'),
           value: vscoin,
-          options: _utils_fiatcoins_json__WEBPACK_IMPORTED_MODULE_6__,
+          options: _utils_fiatcoins_json__WEBPACK_IMPORTED_MODULE_5__,
           onChange: function (newVal) {
             return setVscoin(newVal);
           },
           __nextHasNoMarginBottom: true
-        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
           className: "",
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Period', 'crypto-chart-block'),
           value: period,
@@ -339,7 +339,7 @@ function Edit(_a) {
         }),  false && 0, (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: 'relative'
         }, {
-          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('From Date', 'crypto-chart-block'),
             type: "date",
             value: dateFrom,
@@ -350,7 +350,7 @@ function Edit(_a) {
           }), openDatePickerFrom && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
             className: 'absolute bg-white p-10 top-0 left-0 z-10 shadow'
           }, {
-            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.DatePicker, {
+            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
               currentDate: new Date(),
               onChange: function (date) {
                 var dateFormat = new Date(date);
@@ -369,7 +369,7 @@ function Edit(_a) {
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: 'relative'
         }, {
-          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('to Date', 'crypto-chart-block'),
             type: "date",
             value: dateTo,
@@ -380,7 +380,7 @@ function Edit(_a) {
           }), openDatePickerTo && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
             className: 'absolute bg-white p-10 top-0 left-0 z-10 shadow'
           }, {
-            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.DatePicker, {
+            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
               currentDate: new Date(),
               onChange: function (date) {
                 var dateFormat = new Date(date);
@@ -406,7 +406,7 @@ function Edit(_a) {
       }, {
         children: [dateFrom && dateTo && coins && coins.map(function (coin) {
           //Make sure "coin" exist and this is not reacting before setCoins is updated
-          if (coin) return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CoinSettings__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          if (coin) return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CoinSettings__WEBPACK_IMPORTED_MODULE_6__["default"], {
             id: coin.id,
             coinElement: coin,
             labelsElement: labels,
@@ -416,8 +416,7 @@ function Edit(_a) {
             dateFrom: dateFrom,
             dateTo: dateTo,
             updateCoin: updateCoin,
-            removeCoin: removeCoin,
-            className: "bg-white rounded-lg"
+            removeCoin: removeCoin
           }, coin.id);
         }), maxCoins > coins.length && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
           onClick: function () {
@@ -440,7 +439,7 @@ function Edit(_a) {
             padding: '10px'
           }
         }, {
-          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_9__.Line, {
+          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_8__.Line, {
             options: options,
             data: data
           })
@@ -477,15 +476,10 @@ var __assign = undefined && undefined.__assign || function () {
   return __assign.apply(this, arguments);
 };
 
-/**
- * React dependencies
- */
-
 
 function save(_a) {
   var attributes = _a.attributes;
-  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()));
-  return null; //We are using the register_block_type render_callback to render all the block
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save())); //this div will be render by react and the attributes read to get the chart info
 }
 
 /***/ }),
@@ -17400,19 +17394,19 @@ var __webpack_exports__ = {};
   !*** ./src/plugin-block.tsx ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _block_Edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block/Edit */ "./src/block/Edit.tsx");
-/* harmony import */ var _block_Save__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block/Save */ "./src/block/Save.tsx");
-/* harmony import */ var _plugin_block_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugin-block.scss */ "./src/plugin-block.scss");
+/* harmony import */ var _plugin_block_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./plugin-block.scss */ "./src/plugin-block.scss");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _block_Edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block/Edit */ "./src/block/Edit.tsx");
+/* harmony import */ var _block_Save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block/Save */ "./src/block/Save.tsx");
+
 /**
  * WordPress dependencies
  */
 
 
 
-
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('crypto-chart-block/editor', {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)('crypto-chart-block/editor', {
   title: 'Crypto Chart Block',
   category: 'common',
   textdomain: 'crypto-chart-block',
@@ -17455,8 +17449,8 @@ __webpack_require__.r(__webpack_exports__);
       default: false
     }
   },
-  edit: _block_Edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: _block_Save__WEBPACK_IMPORTED_MODULE_2__["default"]
+  edit: _block_Edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  save: _block_Save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 })();
 
