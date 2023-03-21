@@ -32,6 +32,7 @@ function crypto_chart_block_init()
 add_action('init', 'crypto_chart_block_init');
 
 function my_plugin_render_dynamic_block($attributes){
+
     return '<div class="crypto-chart-block-wrap" ' . implode(' ', escape_block_attributes($attributes)) . '></div>';
 }
 

@@ -16447,13 +16447,17 @@ for (var i = 0; i < elements.length; i++) {
   console.log('elements', elements[i].dataset);
   var coins = elements[i].dataset.coins;
   var dates = elements[i].dataset.dates;
+  var dateFrom = elements[i].dataset.dateFrom;
+  var dateTo = elements[i].dataset.dateTo;
   var showTitle = elements[i].dataset.showTitle || false;
   var vscoin = (_a = elements[i].dataset.vscoin) !== null && _a !== void 0 ? _a : 'usd';
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.render)((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(CryptoChartBlock, {
     coins: coins,
     dates: dates,
     vscoin: vscoin,
-    showTitle: showTitle
+    showTitle: showTitle,
+    dateFrom: dateFrom,
+    dateTo: dateTo
   }), elements[i]);
 }
 /**
@@ -16463,10 +16467,23 @@ function CryptoChartBlock(_a) {
   var coins = _a.coins,
     dates = _a.dates,
     vscoin = _a.vscoin,
-    showTitle = _a.showTitle;
+    showTitle = _a.showTitle,
+    dateFrom = _a.dateFrom,
+    dateTo = _a.dateTo;
+  var locale = 'en-EN';
   coins = JSON.parse(coins);
   dates = JSON.parse(dates);
-  //title hiden
+  var auxDateFrom = new Date(dateFrom + 'T00:00:00');
+  var auxDateTo = new Date(dateTo + 'T00:00:00');
+  var dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  var titleCoins = coins.map(function (coin) {
+    return coin.coin.charAt(0).toUpperCase() + coin.coin.slice(1);
+  }).join(' Vs ') + ' Vs ' + vscoin.toUpperCase();
+  var titleDates = auxDateFrom.getDate() ? 'Market Prices from ' + auxDateFrom.toLocaleDateString(locale, dateOptions) + ' to ' + auxDateTo.toLocaleDateString(locale, dateOptions) : titleCoins + ' ...' + dateFrom + ' ...' + auxDateFrom.getDate();
   var options = {
     responsive: true,
     plugins: {
@@ -16474,10 +16491,8 @@ function CryptoChartBlock(_a) {
         position: 'top'
       },
       title: {
-        display: false,
-        text: coins.map(function (coin) {
-          return coin.coin.charAt(0).toUpperCase() + coin.coin.slice(1);
-        }).join(' Vs ') + ' Vs ' + vscoin.toUpperCase()
+        display: showTitle,
+        text: titleDates
       }
     }
   };
