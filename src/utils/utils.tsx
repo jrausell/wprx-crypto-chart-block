@@ -1,4 +1,7 @@
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 export async function getMarketChart(coin, vscoin, days, interval, dateFrom, dateTo) {
@@ -16,14 +19,14 @@ export async function getMarketChart(coin, vscoin, days, interval, dateFrom, dat
    let dailyPrices = [];
    let lastDate;
    let lastPrice;
-   for(const item of data.prices) {
+   for (const item of data.prices) {
       const dateFromTime = new Date(parseInt(item[0]));
       const date = dateFromTime.getFullYear() + '-' + dateFromTime.getMonth() + '-' + dateFromTime.getDate();
-      if(!lastDate){
+      if (!lastDate) {
          lastDate = date;
       }
       //get last price from date
-      if(lastDate !== date){
+      if (lastDate !== date) {
          dailyLabels.push(date)
          dailyPrices.push(item)
       }
@@ -33,24 +36,50 @@ export async function getMarketChart(coin, vscoin, days, interval, dateFrom, dat
 
    //TODO: check if data is valid or error returned
 
-   return {prices: dailyPrices, dates: dailyLabels};
+   return { prices: dailyPrices, dates: dailyLabels };
 }
 
+/**
+ * returns a ligthen shade from color prop
+ */
 //method from https://stackoverflow.com/a/62640342/10324485
-export function lightenColor(col, amt){
-   col = col.replace(/^#/, '')
-   if (col.length === 3) col = col[0] + col[0] + col[1] + col[1] + col[2] + col[2]
- 
-   let [r, g, b] = col.match(/.{2}/g);
-   ([r, g, b] = [parseInt(r, 16) + amt, parseInt(g, 16) + amt, parseInt(b, 16) + amt])
- 
+export function lightenColor(color, percentage) {
+   color = color.replace(/^#/, '')
+   if (color.length === 3) color = color[0] + color[0] + color[1] + color[1] + color[2] + color[2]
+
+   let [r, g, b] = color.match(/.{2}/g);
+   ([r, g, b] = [parseInt(r, 16) + percentage, parseInt(g, 16) + percentage, parseInt(b, 16) + percentage])
+
    r = Math.max(Math.min(255, r), 0).toString(16)
    g = Math.max(Math.min(255, g), 0).toString(16)
    b = Math.max(Math.min(255, b), 0).toString(16)
- 
+
    const rr = (r.length < 2 ? '0' : '') + r
    const gg = (g.length < 2 ? '0' : '') + g
    const bb = (b.length < 2 ? '0' : '') + b
- 
+
    return `#${rr}${gg}${bb}`
- }
+}
+
+/**
+ * Handles a click-outside element
+ */
+export function onOutsideClick(callback) {
+   const ref = React.useRef();
+
+   React.useEffect(() => {
+      const handleClick = (event) => {
+         if (ref.current && !ref.current.contains(event.target)) {
+            callback();
+         }
+      };
+
+      document.addEventListener('click', handleClick, true);
+
+      return () => {
+         document.removeEventListener('click', handleClick, true);
+      };
+   }, [ref]);
+
+   return ref;
+};

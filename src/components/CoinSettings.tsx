@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { getMarketChart, lightenColor } from '../utils/utils';
+import { getMarketChart, lightenColor, onOutsideClick } from '../utils/utils';
 import { HexColorPicker } from "react-colorful";
 
 /**
@@ -43,6 +43,10 @@ export default function CoinSettings ({ id, coinElement, labelsElement, vscoin, 
    const [labels, setLabels] = useState<Array<any>>(labelsElement ?? []);
    const [color, setColor] = useState<string>(coinElement?.color || '#497bb1');
    const [openColorPicker, setOpenColorPicker] = useState(false);
+   const handleClickOutColorPicker = () => {
+      setOpenColorPicker(false)
+   }
+   const refColorPicker = onOutsideClick(handleClickOutColorPicker);
 
    const colors = [
       { name: 'red', color: '#f00' },
@@ -104,7 +108,7 @@ export default function CoinSettings ({ id, coinElement, labelsElement, vscoin, 
          __nextHasNoMarginBottom
       />
 
-      <div className="flex gap-10">
+      <div className="flex gap-20">
          <div className='relative'>
             <TextControl
                value={color}
@@ -113,9 +117,11 @@ export default function CoinSettings ({ id, coinElement, labelsElement, vscoin, 
                onClick={() => setOpenColorPicker(true)}
                style={{ backgroundColor: color }}
             />
-            {openColorPicker && <div className='absolute' style={{ backgroundColor: 'white', padding: '10px' }}>
+            {openColorPicker && <div 
+            ref={refColorPicker}
+            className='absolute top-0 left-0 shadow' style={{ backgroundColor: 'white', padding: '10px', zIndex: 10 }}
+            >
                <HexColorPicker color={color} onChange={setColor} />
-               <button type='button' style={{ cursor: 'pointer', backgroundColor: '#1d8de2', color: 'white' }} onClick={() => setOpenColorPicker(false)}>Save</button>
             </div>}
          </div>
 

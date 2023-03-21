@@ -36,7 +36,7 @@ import {
 /**
  * Our libraries
  */
-import { getMarketChart, lightenColor } from '../utils/utils';
+import { getMarketChart, lightenColor, onOutsideClick } from '../utils/utils';
 import cryptocoins from "../utils/cryptocoins.json";
 import vscoins from "../utils/fiatcoins.json";
 //the component to set the coin settions (coin, color)
@@ -75,8 +75,18 @@ export default function Edit({
    const currentDateTime = currentDate.getTime();
    const last30DaysDate = new Date(currentDate.setDate(currentDate.getDate() - 30));
    const last30DaysDateTime = last30DaysDate.getTime();
+   
    const [openDatePickerFrom, setOpenDatePickerFrom] = useState(false);
+   const handleClickOutDateFrom = () => {
+      setOpenDatePickerFrom(false)
+   }
+   const refFrom = onOutsideClick(handleClickOutDateFrom);
+
    const [openDatePickerTo, setOpenDatePickerTo] = useState(false);
+   const handleClickOutDateTo = () => {
+      setOpenDatePickerTo(false)
+   }
+   const refTo = onOutsideClick(handleClickOutDateTo);
 
    const [vscoin, setVscoin] = useState(attributes?.vscoin || 'usd');
    const [period, setPeriod] = useState(attributes?.period || 'daily');
@@ -102,14 +112,14 @@ export default function Edit({
     * Add a new empty coin in the coins array
     */
    function addCoin() {
-      const color = colors.find(color => { 
-         if(
-            !coins.find(coin => { 
-               if( coin.color == color ) return true; 
+      const color = colors.find(color => {
+         if (
+            !coins.find(coin => {
+               if (coin.color == color) return true;
             })
          ) return color;
       }) || '#49abb1';
-      
+
       coins.push({
          id: Date.now() + cont,
          coin: '',
@@ -194,7 +204,7 @@ export default function Edit({
 
    }, [coins]);
 
-   function generateChartData(){
+   function generateChartData() {
 
       console.log('generateChartData() ', coins);
       const datasets = coins.map(coin => {
@@ -215,72 +225,72 @@ export default function Edit({
 
    }
 
-   
+
    /**
     * Update Block Attributes on any change
     */
    useEffect(() => {
-      if(isLoading) return;
+      if (isLoading) return;
       saveAllBlockAttributes();
    }, [showTitle, period, steps, vscoin, data]);
 
-   function saveAllBlockAttributes(){
+   function saveAllBlockAttributes() {
 
-      if(!setAttributes) return;
+      if (!setAttributes) return;
 
       // vscoin: {
       //    type: "string",
       //    default: "usd"
       // },
-      setAttributes({vscoin: vscoin});
+      setAttributes({ vscoin: vscoin });
       // coins: {
       //    type: "string",
       //    default: "[]",
       // },
-      setAttributes({coins: JSON.stringify(coins)});
+      setAttributes({ coins: JSON.stringify(coins) });
       // dateFrom: {
       //    type: "string",
       //    default: "",
       // },
-      setAttributes({dateFrom: dateFrom});
+      setAttributes({ dateFrom: dateFrom });
       // dateTo: {
       //    type: "string",
       //    default: "",
       // },
-      setAttributes({dateTo: dateTo});
+      setAttributes({ dateTo: dateTo });
       // dates: {
       //    type: "string",
       //    default: "[]",
       // },
-      setAttributes({dates: JSON.stringify(labels)});
+      setAttributes({ dates: JSON.stringify(labels) });
       // period: {
       //    type: "string",
       //    default: "daily",
       // },
-      setAttributes({period: period});
+      setAttributes({ period: period });
       // steps: {
       //    type: "number",
       //    default: 30,
       // },
-      setAttributes({steps: parseInt(steps)});
+      setAttributes({ steps: parseInt(steps) });
       // showTitle: {
       //    type: "boolean",
       //    default: false,
       // }
-      setAttributes({showTitle: Boolean(showTitle)});
+      setAttributes({ showTitle: Boolean(showTitle) });
 
       //console.log('BLOCK ATTR: ', attributes)
 
    }
-   
-   
+
+
    //<div {...useBlockProps()}>
    return (
       <div className=''>
-         <div className='wrap p-10' style={{ backgroundColor: 'rgb(250, 250, 250)' }}>
+         <div className='p-10' style={{ backgroundColor: 'rgb(250, 250, 250)' }}>
 
             <h5 className='m-0 p-0 text-14'>{__('Settings', 'crypto-chart-block')}:</h5>
-   
+
             <div className='grid grid-5 gap-10 flex-align-end'>
                <SelectControl
                   className=""
@@ -290,7 +300,7 @@ export default function Edit({
                   onChange={(newVal: boolean) => setShowTitle(newVal)}
                   __nextHasNoMarginBottom
                />
-   
+
                <SelectControl
                   className=""
                   label={__('Vs Coin', 'crypto-chart-block')}
@@ -299,7 +309,7 @@ export default function Edit({
                   onChange={(newVal: string) => setVscoin(newVal)}
                   __nextHasNoMarginBottom
                />
-   
+
                <SelectControl
                   className=""
                   label={__('Period', 'crypto-chart-block')}
@@ -308,7 +318,7 @@ export default function Edit({
                   onChange={(newVal: string) => setPeriod(newVal)}
                   __nextHasNoMarginBottom
                />
-   
+
                {false && <SelectControl
                   className=""
                   label={__('Days', 'crypto-chart-block')}
@@ -317,57 +327,61 @@ export default function Edit({
                   onChange={(newVal: number) => setSteps(newVal)}
                   __nextHasNoMarginBottom
                />}
-   
+
                <div className='relative'>
                   <TextControl
-                  label={__('From Date', 'crypto-chart-block')}
-                  type="date"
-                  value={dateFrom}
-                  readOnly={true}
-                  onClick={() => setOpenDatePickerFrom(true)}
+                     label={__('From Date', 'crypto-chart-block')}
+                     type="date"
+                     value={dateFrom}
+                     readOnly={true}
+                     onClick={() => setOpenDatePickerFrom(true)}
                   />
-                  {openDatePickerFrom && <div className='absolute bg-white p-10 top-0 left-0 z-10 shadow'>
+                  {openDatePickerFrom && <div 
+                  ref={refFrom}
+                  className='absolute bg-white p-10 top-0 left-0 z-10 shadow'
+                  >
                      <DatePicker
-                        currentDate={ new Date() }
-                        onChange={ ( date ) => {
-                              const dateFormat= new Date(date);
-                              const newDate = dateFormat.getFullYear()+"-"+(dateFormat.getMonth()+1 + '').padStart(2, '0')+"-"+(dateFormat.getDate() + '').padStart(2, '0');
-                              console.log('new date To', newDate)
-                              setDateFrom( newDate )
-                           }
+                        currentDate={new Date()}
+                        onChange={(date) => {
+                           const dateFormat = new Date(date);
+                           const newDate = dateFormat.getFullYear() + "-" + (dateFormat.getMonth() + 1 + '').padStart(2, '0') + "-" + (dateFormat.getDate() + '').padStart(2, '0');
+                           console.log('new date To', newDate)
+                           setDateFrom(newDate)
+                        }
                         }
                      />
-                     <button onClick={() => setOpenDatePickerFrom(false)}>close</button>
                   </div>}
                </div>
-   
+
                <div className='relative'>
                   <TextControl
-                  label={__('to Date', 'crypto-chart-block')}
-                  type="date"
-                  value={dateTo}
-                  readOnly={true}
-                  onClick={() => setOpenDatePickerTo(true)}
+                     label={__('to Date', 'crypto-chart-block')}
+                     type="date"
+                     value={dateTo}
+                     readOnly={true}
+                     onClick={() => setOpenDatePickerTo(true)}
                   />
-                  {openDatePickerTo && <div className='absolute bg-white p-10 top-0 left-0 z-10 shadow'>
+                  {openDatePickerTo && <div 
+                  ref={refTo}
+                  className='absolute bg-white p-10 top-0 left-0 z-10 shadow'
+                  >
                      <DatePicker
-                        currentDate={ new Date() }
-                        onChange={ ( date ) => {
-                              const dateFormat= new Date(date);
-                              const newDate = dateFormat.getFullYear()+"-"+(dateFormat.getMonth()+1 + '').padStart(2, '0')+"-"+(dateFormat.getDate() + '').padStart(2, '0');
-                              console.log('new date To', newDate)
-                              setDateTo( newDate )
-                           }
+                        currentDate={new Date()}
+                        onChange={(date) => {
+                           const dateFormat = new Date(date);
+                           const newDate = dateFormat.getFullYear() + "-" + (dateFormat.getMonth() + 1 + '').padStart(2, '0') + "-" + (dateFormat.getDate() + '').padStart(2, '0');
+                           console.log('new date To', newDate)
+                           setDateTo(newDate)
+                        }
                         }
                      />
-                     <button onClick={() => setOpenDatePickerTo(false)}>close</button>
                   </div>}
                </div>
-   
+
             </div>
-   
+
             <h5 className='m-0 p-0 text-14'>Crypto coins:</h5>
-   
+
             <div className='grid grid-4 gap-20 mb-10'>
                {dateFrom && dateTo && coins && coins.map(coin => {
                   //Make sure "coin" exist and this is not reacting before setCoins is updated
@@ -385,18 +399,18 @@ export default function Edit({
                      removeCoin={removeCoin}
                   />
                })}
-   
-               {maxCoins > coins.length && 
-                  <div 
-                  onClick={() => addCoin()}
-                  className="relative flex flex-justify-center flex-align-center bg-white"
-                  style={{ border: '4px solid #f2f2f2', cursor: 'pointer', minHeight: '78px' }}
+
+               {maxCoins > coins.length &&
+                  <div
+                     onClick={() => addCoin()}
+                     className="relative flex flex-justify-center flex-align-center bg-white"
+                     style={{ border: '4px solid #f2f2f2', cursor: 'pointer', minHeight: '78px' }}
                   >
                      Add Coin
                   </div>
                }
             </div>
-   
+
             <div>
                {labels && labels.length > 0 && coins && coins.length > 0 && coins[0].coin != '' && data && data.hasOwnProperty('datasets') && <div style={{ maxWidth: '600px', backgroundColor: '#f2f2f2', padding: '10px' }}>
                   <Line options={options} data={data} />

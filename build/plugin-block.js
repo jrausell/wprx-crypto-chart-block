@@ -83,9 +83,17 @@ function Edit(_a) {
   var _e = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     openDatePickerFrom = _e[0],
     setOpenDatePickerFrom = _e[1];
+  var handleClickOutDateFrom = function () {
+    setOpenDatePickerFrom(false);
+  };
+  var refFrom = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.onOutsideClick)(handleClickOutDateFrom);
   var _f = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     openDatePickerTo = _f[0],
     setOpenDatePickerTo = _f[1];
+  var handleClickOutDateTo = function () {
+    setOpenDatePickerTo(false);
+  };
+  var refTo = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_4__.onOutsideClick)(handleClickOutDateTo);
   var _g = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((attributes === null || attributes === void 0 ? void 0 : attributes.vscoin) || 'usd'),
     vscoin = _g[0],
     setVscoin = _g[1];
@@ -285,7 +293,7 @@ function Edit(_a) {
     className: ''
   }, {
     children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-      className: 'wrap p-10',
+      className: 'p-10',
       style: {
         backgroundColor: 'rgb(250, 250, 250)'
       }
@@ -347,10 +355,11 @@ function Edit(_a) {
             onClick: function () {
               return setOpenDatePickerFrom(true);
             }
-          }), openDatePickerFrom && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          }), openDatePickerFrom && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+            ref: refFrom,
             className: 'absolute bg-white p-10 top-0 left-0 z-10 shadow'
           }, {
-            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
               currentDate: new Date(),
               onChange: function (date) {
                 var dateFormat = new Date(date);
@@ -358,13 +367,7 @@ function Edit(_a) {
                 console.log('new date To', newDate);
                 setDateFrom(newDate);
               }
-            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({
-              onClick: function () {
-                return setOpenDatePickerFrom(false);
-              }
-            }, {
-              children: "close"
-            }))]
+            })
           }))]
         })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
           className: 'relative'
@@ -377,10 +380,11 @@ function Edit(_a) {
             onClick: function () {
               return setOpenDatePickerTo(true);
             }
-          }), openDatePickerTo && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
+          }), openDatePickerTo && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+            ref: refTo,
             className: 'absolute bg-white p-10 top-0 left-0 z-10 shadow'
           }, {
-            children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
+            children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
               currentDate: new Date(),
               onChange: function (date) {
                 var dateFormat = new Date(date);
@@ -388,13 +392,7 @@ function Edit(_a) {
                 console.log('new date To', newDate);
                 setDateTo(newDate);
               }
-            }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({
-              onClick: function () {
-                return setOpenDatePickerTo(false);
-              }
-            }, {
-              children: "close"
-            }))]
+            })
           }))]
         }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h5", __assign({
@@ -560,6 +558,10 @@ function CoinSettings(_a) {
   var _h = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
     openColorPicker = _h[0],
     setOpenColorPicker = _h[1];
+  var handleClickOutColorPicker = function () {
+    setOpenColorPicker(false);
+  };
+  var refColorPicker = (0,_utils_utils__WEBPACK_IMPORTED_MODULE_3__.onOutsideClick)(handleClickOutColorPicker);
   var colors = [{
     name: 'red',
     color: '#f00'
@@ -616,7 +618,7 @@ function CoinSettings(_a) {
       },
       __nextHasNoMarginBottom: true
     }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-      className: "flex gap-10"
+      className: "flex gap-20"
     }, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
         className: 'relative'
@@ -631,29 +633,19 @@ function CoinSettings(_a) {
           style: {
             backgroundColor: color
           }
-        }), openColorPicker && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", __assign({
-          className: 'absolute',
+        }), openColorPicker && (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", __assign({
+          ref: refColorPicker,
+          className: 'absolute top-0 left-0 shadow',
           style: {
             backgroundColor: 'white',
-            padding: '10px'
+            padding: '10px',
+            zIndex: 10
           }
         }, {
-          children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_colorful__WEBPACK_IMPORTED_MODULE_6__.HexColorPicker, {
+          children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_colorful__WEBPACK_IMPORTED_MODULE_6__.HexColorPicker, {
             color: color,
             onChange: setColor
-          }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({
-            type: 'button',
-            style: {
-              cursor: 'pointer',
-              backgroundColor: '#1d8de2',
-              color: 'white'
-            },
-            onClick: function () {
-              return setOpenColorPicker(false);
-            }
-          }, {
-            children: "Save"
-          }))]
+          })
         }))]
       })), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", __assign({
@@ -688,8 +680,11 @@ function CoinSettings(_a) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getMarketChart": () => (/* binding */ getMarketChart),
-/* harmony export */   "lightenColor": () => (/* binding */ lightenColor)
+/* harmony export */   "lightenColor": () => (/* binding */ lightenColor),
+/* harmony export */   "onOutsideClick": () => (/* binding */ onOutsideClick)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -805,6 +800,7 @@ var __generator = undefined && undefined.__generator || function (thisArg, body)
     };
   }
 };
+
 function getMarketChart(coin, vscoin, days, interval, dateFrom, dateTo) {
   return __awaiter(this, void 0, void 0, function () {
     var dateFromTime, dateToTime, url, response, data, dailyLabels, dailyPrices, lastDate, lastPrice, _i, _a, item, dateFromTime_1, date;
@@ -846,16 +842,19 @@ function getMarketChart(coin, vscoin, days, interval, dateFrom, dateTo) {
     });
   });
 }
+/**
+ * returns a ligthen shade from color prop
+ */
 //method from https://stackoverflow.com/a/62640342/10324485
-function lightenColor(col, amt) {
+function lightenColor(color, percentage) {
   var _a;
-  col = col.replace(/^#/, '');
-  if (col.length === 3) col = col[0] + col[0] + col[1] + col[1] + col[2] + col[2];
-  var _b = col.match(/.{2}/g),
+  color = color.replace(/^#/, '');
+  if (color.length === 3) color = color[0] + color[0] + color[1] + color[1] + color[2] + color[2];
+  var _b = color.match(/.{2}/g),
     r = _b[0],
     g = _b[1],
     b = _b[2];
-  _a = [parseInt(r, 16) + amt, parseInt(g, 16) + amt, parseInt(b, 16) + amt], r = _a[0], g = _a[1], b = _a[2];
+  _a = [parseInt(r, 16) + percentage, parseInt(g, 16) + percentage, parseInt(b, 16) + percentage], r = _a[0], g = _a[1], b = _a[2];
   r = Math.max(Math.min(255, r), 0).toString(16);
   g = Math.max(Math.min(255, g), 0).toString(16);
   b = Math.max(Math.min(255, b), 0).toString(16);
@@ -864,6 +863,25 @@ function lightenColor(col, amt) {
   var bb = (b.length < 2 ? '0' : '') + b;
   return "#".concat(rr).concat(gg).concat(bb);
 }
+/**
+ * Handles a click-outside element
+ */
+function onOutsideClick(callback) {
+  var ref = react__WEBPACK_IMPORTED_MODULE_0___default().useRef();
+  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
+    var handleClick = function (event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    };
+    document.addEventListener('click', handleClick, true);
+    return function () {
+      document.removeEventListener('click', handleClick, true);
+    };
+  }, [ref]);
+  return ref;
+}
+;
 
 /***/ }),
 

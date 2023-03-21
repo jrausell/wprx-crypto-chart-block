@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ReactDOM.render(
       <div>
          <h2>{__('Crypto Chart Block', 'crypto-chart-block-settings')}</h2>
-         <div style={{ maxWidth: '800px' }}>
+         <div style={{ maxWidth: '680px' }}>
             <App />
          </div>
       </div>
@@ -97,13 +97,13 @@ const App = () => {
     * Return the view rendered
     */
    return <div>
-      <div className='bg-white p-20'>
+      <div className='bg-white p-10'>
          <p>{__('Add a chart showing the daily market prices from a start date to a end date.', 'crypto-chart-block')}</p>
          <p>{__('The market prices are fetched from CoinGeko free API.', 'crypto-chart-block')}</p>
       </div>
 
       <h3>{__('Chart Example', 'crypto-chart-block')}</h3>
-      <div className='block-editor-block-list__block' style={{ maxWidth: '800px' }}>
+      <div className='block-editor-block-list__block' style={{ maxWidth: '680px' }}>
          <Edit 
          className={false}
          isSelected={false}
